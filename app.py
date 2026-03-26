@@ -29,6 +29,8 @@ def alumnos():
         alum = Alumnos(
             nombre=create_form.nombre.data,
             apaterno=create_form.apaterno.data,
+            amaterno=create_form.amaterno.data,
+            edad=create_form.edad.data,
             email=create_form.email.data
         )
         db.session.add(alum)
@@ -50,11 +52,15 @@ def modificar():
         create_form.id.data = alum1.id
         create_form.nombre.data = alum1.nombre
         create_form.apaterno.data = alum1.apaterno
+        create_form.amaterno.data = alum1.amaterno
+        create_form.edad.data = alum1.edad
         create_form.email.data = alum1.email
 
     if request.method == "POST":
         alum1.nombre = create_form.nombre.data
         alum1.apaterno = create_form.apaterno.data
+        alum1.amaterno = create_form.amaterno.data
+        alum1.edad = create_form.edad.data
         alum1.email = create_form.email.data
         db.session.commit()
         return redirect(url_for("index"))
@@ -75,6 +81,8 @@ def eliminar():
         create_form.id.data = alum1.id
         create_form.nombre.data = alum1.nombre
         create_form.apaterno.data = alum1.apaterno
+        create_form.amaterno.data = alum1.amaterno
+        create_form.edad.data = alum1.edad
         create_form.email.data = alum1.email
 
     if request.method == "POST":
@@ -98,6 +106,8 @@ def detalles():
         id=alum1.id,
         nombre=alum1.nombre,
         apaterno=alum1.apaterno,
+        amaterno=alum1.amaterno,
+        edad=alum1.edad,
         email=alum1.email
     )
 
