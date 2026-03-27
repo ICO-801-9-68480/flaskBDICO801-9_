@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for
 from models import db, Maestros
 import forms
-
-maestros_bp = Blueprint('maestros_bp', __name__)
+from . import maestros_bp
 
 @maestros_bp.route("/maestros", methods=["GET", "POST"])
 def maestros():
@@ -23,7 +22,7 @@ def maestros_nuevo():
         )
         db.session.add(maestro)
         db.session.commit()
-        return redirect(url_for('maestros_bp.maestros'))
+        return redirect(url_for('maestros.maestros'))
     return render_template("maestros/crear.html", form=create_form)
 
 @maestros_bp.route("/maestros/modificar", methods=['GET', 'POST'])
@@ -48,7 +47,7 @@ def maestros_modificar():
         maestro1.email = create_form.email.data
         db.session.add(maestro1)
         db.session.commit()
-        return redirect(url_for('maestros_bp.maestros'))
+        return redirect(url_for('maestros.maestros'))
     return render_template("maestros/modificar.html", form=create_form)
 
 @maestros_bp.route('/maestros/eliminar', methods=['GET', 'POST'])
@@ -68,7 +67,7 @@ def maestros_eliminar():
         maestro = Maestros.query.get_or_404(matricula)
         db.session.delete(maestro)
         db.session.commit()
-        return redirect(url_for('maestros_bp.maestros'))
+        return redirect(url_for('maestros.maestros'))
     return render_template('maestros/eliminar.html', form=create_form)
 
 @maestros_bp.route("/maestros/detalles", methods=['GET', 'POST'])
