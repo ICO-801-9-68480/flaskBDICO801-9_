@@ -1,68 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Colegio Guanajuato</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/output.css') }}">
-</head>
-<body class="bg-gray-100">
-
-<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-300 shadow-sm">
-  <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
-
-    <a href="{{ url_for('alumnos.inicio') }}" class="flex items-center gap-4 hover:opacity-90 transition">
-      <img
-        src="{{ url_for('static', filename='img/logo_gto_sin_fondo.png') }}"
-        alt="Logo Colegio Guanajuato"
-        class="w-16 h-16 object-contain"
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dist/output.css') }}"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <nav
+      class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-300 shadow-sm"
+    >
+      <div
+        class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between"
       >
-      <div>
-        <h1 class="text-3xl font-bold text-gray-800 leading-tight">Colegio Guanajuato</h1>
-        <p class="text-base text-gray-500">Sistema escolar</p>
+        <a
+          href="{{ url_for('alumnos.inicio') }}"
+          class="flex items-center gap-4 hover:opacity-90 transition"
+        >
+          <img
+            src="{{ url_for('static', filename='img/logo_gto_sin_fondo.png') }}"
+            alt="Logo Colegio Guanajuato"
+            class="w-16 h-16 object-contain"
+          />
+          <div>
+            <h1 class="text-3xl font-bold text-gray-800 leading-tight">
+              Colegio Guanajuato
+            </h1>
+            <p class="text-base text-gray-500">Sistema escolar</p>
+          </div>
+        </a>
+
+        <ul class="flex items-center gap-8 text-lg font-semibold text-gray-700">
+          <li>
+            <a
+              href="{{ url_for('alumnos.inicio') }}"
+              class="hover:text-blue-700 transition px-3 py-2 rounded-md hover:bg-blue-50"
+            >
+              Inicio
+            </a>
+          </li>
+          <li>
+            <a
+              href="{{ url_for('alumnos.alumnos') }}"
+              class="hover:text-blue-700 transition px-3 py-2 rounded-md hover:bg-blue-50"
+            >
+              Alumnos
+            </a>
+          </li>
+          <li>
+            <a
+              href="{{ url_for('maestros.maestros') }}"
+              class="hover:text-blue-700 transition px-3 py-2 rounded-md hover:bg-blue-50"
+            >
+              Maestros
+            </a>
+          </li>
+          <li>
+            <a
+              href="{{ url_for('cursos.cursos') }}"
+              class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+            >
+              Cursos
+            </a>
+          </li>
+        </ul>
       </div>
-    </a>
+    </nav>
 
-    <ul class="flex items-center gap-8 text-lg font-semibold text-gray-700">
-      <li>
-        <a href="{{ url_for('alumnos.inicio') }}"
-           class="hover:text-blue-700 transition px-3 py-2 rounded-md hover:bg-blue-50">
-          Inicio
-        </a>
-      </li>
-      <li>
-        <a href="{{ url_for('alumnos.alumnos') }}"
-           class="hover:text-blue-700 transition px-3 py-2 rounded-md hover:bg-blue-50">
-          Alumnos
-        </a>
-      </li>
-      <li>
-        <a href="{{ url_for('maestros.maestros') }}"
-           class="hover:text-blue-700 transition px-3 py-2 rounded-md hover:bg-blue-50">
-          Maestros
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
+    {% with messages = get_flashed_messages() %} {% if messages %}
     <div class="max-w-screen-xl mx-auto mt-28 px-4">
       {% for message in messages %}
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200 shadow-sm" role="alert">
-          {{ message }}
-        </div>
+      <div
+        class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200 shadow-sm"
+        role="alert"
+      >
+        {{ message }}
+      </div>
       {% endfor %}
     </div>
-  {% endif %}
-{% endwith %}
+    {% endif %} {% endwith %}
 
-<div class="container mx-auto px-4">
-    {% block container %}
-    {% endblock %}
-</div>
+    <div class="container mx-auto px-4">
+      {% block container %} {% endblock %}
+    </div>
 
-<script src="{{ url_for('static', filename='node_modules/flowbite/dist/flowbite.min.js') }}"></script>
-</body>
+    <script src="{{ url_for('static', filename='node_modules/flowbite/dist/flowbite.min.js') }}"></script>
+  </body>
 </html>
